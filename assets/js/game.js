@@ -1,6 +1,13 @@
-let arrayOne = ["Scissors", "Paper", "Rock", "Lizard", "Spock"];
+let arrayOne = [
+  { name: "Scissors", imgUrl: "./assets/images/icon-scissors.svg" },
+  { name: "Paper", imgUrl: "./assets/images/icon-paper.svg" },
+  { name: "Rock", imgUrl: "./assets/images/icon-rock.svg" },
+  { name: "Lizard", imgUrl: "./assets/images/icon-lizard.svg" },
+  { name: "Spock", imgUrl: "./assets/images/icon-spock.svg" },
+];
+//["Scissors", "Paper", "Rock", "Lizard", "Spock"]
 let arrayTwo = arrayOne;
-let attribution = document.querySelector(".attribution");
+let pentagon = document.querySelector(".pentagon");
 if (window.localStorage.getItem("score") === null) {
   window.localStorage.setItem("score", 0);
 }
@@ -16,7 +23,7 @@ addScore(+0);
 
 let winLose = () => {
   let youPicked = document.querySelector("button.you-picked");
-  let housePicked = document.querySelector("span.house-picked");
+  let housePicked = document.querySelector("button.house-picked");
   switch (true) {
     case youPicked.innerHTML === housePicked.innerHTML:
       addScore(+0);
@@ -115,8 +122,9 @@ let winLose = () => {
 };
 
 let housePicked = (arr) => {
-  let housePicked = document.createElement("span");
-  let localPicked = arr[Math.floor(Math.random() * arr.length)];
+  let housePicked = document.createElement("button");
+  let localPicked = arr[Math.floor(Math.random() * arr.length)].name;
+  housePicked.disabled = true;
   housePicked.textContent = localPicked;
   housePicked.classList.add("house-picked");
   let youPicked = document.querySelector("button.you-picked");
@@ -127,7 +135,7 @@ let housePicked = (arr) => {
   housePicked.after(playAgainBtn);
   playAgainBtn.onclick = (e) => {
     let yourPick = document.querySelector("button.you-picked");
-    let housePick = document.querySelector("span.house-picked");
+    let housePick = document.querySelector("button.house-picked");
     if (yourPick.disabled === true) {
       yourPick.remove();
       housePick.remove();
@@ -156,8 +164,9 @@ let buildBtns = (arr) => {
   for (let item of arr) {
     let btn = document.createElement("button");
     btn.className = "you-picked";
-    btn.innerText = item;
-    attribution.insertAdjacentElement("beforebegin", btn);
+    btn.innerText = item.name;
+    btn.style.backgroundImage = `url(${item.imgUrl})`;
+    pentagon.insertAdjacentElement("afterbegin", btn);
     btn.addEventListener("click", youPicked);
   }
 };

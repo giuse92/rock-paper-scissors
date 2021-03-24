@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap");
+
+* {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(
+    ellipse at top,
+    hsl(214, 47%, 23%),
+    hsl(237, 49%, 15%)
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+  padding: 45px 0;
+}
+
+main .intro {
+  padding: 20px 30px;
+  border: 3px solid hsl(217, 16%, 45%);
+  border-radius: 1em;
+  display: flex;
+  justify-content: space-between;
+}
+
+main .intro .game-name {
+  list-style-type: none;
+  text-transform: uppercase;
+  line-height: 0.8;
+  margin: 0;
+  padding: 0;
+}
+
+main .intro .game-name li {
+  margin: 0;
+  padding: 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: hsl(0, 0%, 91%);
+}
+
+main .intro .score {
+  margin: 0;
+  width: 150px;
+  border-radius: 0.5em;
+  background-color: hsl(0, 0%, 91%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: hsl(229, 64%, 46%);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+main .intro .score span {
+  color: hsl(229, 25%, 31%);
+  font-size: 60px;
+  font-weight: 700;
+  margin-top: -10px;
+}
+
+main .pentagon {
+  background-image: url("../images/bg-pentagon.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 100%;
+  margin: 100px 0;
+  height: 350px;
+}
+
+main .pentagon .you-picked {
+  background-repeat: no-repeat;
+  background-size: 40% 60%;
+  background-position: center;
+  padding: 25px;
+  width: 120px;
+  height: 120px;
+  border: 15px solid hsl(40, 84%, 53%);
+  border-radius: 50%;
+}
+
+main .pentagon .you-picked:hover {
+  cursor: pointer;
+}

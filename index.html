@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Rock, Paper, Scissors</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
 
-  <!--Score
+    <title>Frontend Mentor | Rock, Paper, Scissors</title>
+
+    <!--Score
   Rules
 
   You Picked
@@ -20,21 +27,43 @@
   Play again
   -->
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
-  <p class="score">Score: <span></span></p>
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="intro">
+        <ul class="game-name">
+          <li>rock</li>
+          <li>paper</li>
+          <li>scissors</li>
+          <li>lizard</li>
+          <li>spock</li>
+        </ul>
+        <p class="score">Score<span></span></p>
+      </div>
+      <div class="pentagon"></div>
+      <button class="modal-rules">rules</button>
+    </main>
 
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="https://github.com/giuse92">giuse92</a>.
-  </div>
+    <footer>
+      <div class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="https://github.com/giuse92">giuse92</a>.
+      </div>
+    </footer>
 
-  <script src="./assets/js/game.js"></script>
-</body>
+    <script src="./assets/js/game.js"></script>
+    <script src="./assets/js/rules.js"></script>
+  </body>
 </html>
