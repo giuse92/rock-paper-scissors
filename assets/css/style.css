@@ -51,14 +51,14 @@ main .intro .game-name li {
   padding: 0;
   font-size: 28px;
   font-weight: 600;
-  color: hsl(0, 0%, 91%);
+  color: #fff;
 }
 
 main .intro .score {
   margin: 0;
   width: 150px;
   border-radius: 0.5em;
-  background-color: hsl(0, 0%, 91%);
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,26 +76,91 @@ main .intro .score span {
 }
 
 main .pentagon {
+  position: relative;
   background-image: url("../images/bg-pentagon.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   width: 100%;
-  margin: 100px 0;
   height: 350px;
+  margin: 150px 0;
 }
 
-main .pentagon .you-picked {
+main .pentagon .you-picked,
+main .pentagon .house-picked,
+main .result .you-picked,
+main .result .house-picked {
+  position: absolute;
   background-repeat: no-repeat;
   background-size: 40% 60%;
   background-position: center;
   padding: 25px;
-  width: 120px;
-  height: 120px;
-  border: 15px solid hsl(40, 84%, 53%);
+  width: 160px;
+  height: 160px;
+  border: 20px solid;
   border-radius: 50%;
 }
 
 main .pentagon .you-picked:hover {
+  cursor: pointer;
+}
+
+main .pentagon .you-picked[name="Scissors"] {
+  top: -28%;
+  left: 39%;
+  border-color: hsl(39, 89%, 49%);
+}
+
+main .pentagon .you-picked[name="Paper"] {
+  right: 11%;
+  top: 11%;
+  border-color: hsl(230, 89%, 62%);
+}
+
+main .pentagon .you-picked[name="Rock"] {
+  right: 21%;
+  top: 72%;
+  border-color: hsl(349, 71%, 52%);
+}
+
+main .pentagon .you-picked[name="Lizard"] {
+  left: 21%;
+  top: 72%;
+  border-color: hsl(261, 73%, 60%);
+}
+
+main .pentagon .you-picked[name="Spock"] {
+  left: 11%;
+  top: 11%;
+  border-color: hsl(189, 59%, 53%);
+}
+
+main .pentagon .result .you-picked[name="Scissors"],
+main .pentagon .result .you-picked[name="Paper"],
+main .pentagon .result .you-picked[name="Rock"],
+main .pentagon .result .you-picked[name="Lizard"],
+main .pentagon .result .you-picked[name="Spock"] {
+  position: static;
+}
+
+main .pentagon .result {
+  display: flex;
+}
+
+main .modal-rules {
+  position: relative;
+  right: 0;
+  justify-content: right;
+  background-color: transparent;
+  width: 10%;
+  text-transform: uppercase;
+  padding: 0;
+  border: 1px solid #fff;
+  border-radius: 0.5em;
+  color: #fff;
+  letter-spacing: 2px;
+}
+
+main .modal-rules:hover {
   cursor: pointer;
 }

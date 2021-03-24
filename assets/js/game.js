@@ -25,95 +25,68 @@ let winLose = () => {
   let youPicked = document.querySelector("button.you-picked");
   let housePicked = document.querySelector("button.house-picked");
   switch (true) {
-    case youPicked.innerHTML === housePicked.innerHTML:
+    case youPicked.name === housePicked.name:
       addScore(+0);
-      alert("pareggio");
       break;
-    case youPicked.innerHTML === "Scissors" &&
-      housePicked.innerHTML === "Paper":
+    case youPicked.name === "Scissors" && housePicked.name === "Paper":
       addScore(+1);
-      alert("vinto");
       break;
-    case youPicked.innerHTML === "Paper" &&
-      housePicked.innerHTML === "Scissors":
+    case youPicked.name === "Paper" && housePicked.name === "Scissors":
       addScore(-1);
-      alert("perso");
       break;
-    case youPicked.innerHTML === "Paper" && housePicked.innerHTML === "Rock":
+    case youPicked.name === "Paper" && housePicked.name === "Rock":
       addScore(+1);
-      alert("vinto");
       break;
-    case youPicked.innerHTML === "Rock" && housePicked.innerHTML === "Paper":
+    case youPicked.name === "Rock" && housePicked.name === "Paper":
       addScore(-1);
-      alert("perso");
       break;
-    case youPicked.innerHTML === "Rock" && housePicked.innerHTML === "Lizard":
+    case youPicked.name === "Rock" && housePicked.name === "Lizard":
       addScore(+1);
-      alert("vinto");
       break;
-    case youPicked.innerHTML === "Lizard" && housePicked.innerHTML === "Rock":
+    case youPicked.name === "Lizard" && housePicked.name === "Rock":
       addScore(-1);
-      alert("perso");
       break;
-    case youPicked.innerHTML === "Lizard" && housePicked.innerHTML === "Spock":
+    case youPicked.name === "Lizard" && housePicked.name === "Spock":
       addScore(+1);
-      alert("vinto");
       break;
-    case youPicked.innerHTML === "Spock" && housePicked.innerHTML === "Lizard":
+    case youPicked.name === "Spock" && housePicked.name === "Lizard":
       addScore(-1);
-      alert("perso");
       break;
-    case youPicked.innerHTML === "Spock" &&
-      housePicked.innerHTML === "Scissors":
+    case youPicked.name === "Spock" && housePicked.name === "Scissors":
       addScore(+1);
-      alert("vinto");
       break;
-    case youPicked.innerHTML === "Scissors" &&
-      housePicked.innerHTML === "Spock":
+    case youPicked.name === "Scissors" && housePicked.name === "Spock":
       addScore(-1);
-      alert("perso");
       break;
-    case youPicked.innerHTML === "Scissors" &&
-      housePicked.innerHTML === "Lizard":
+    case youPicked.name === "Scissors" && housePicked.name === "Lizard":
       addScore(+1);
-      alert("vinto");
       break;
-    case youPicked.innerHTML === "Lizard" &&
-      housePicked.innerHTML === "Scissors":
+    case youPicked.name === "Lizard" && housePicked.name === "Scissors":
       addScore(-1);
-      alert("perso");
       break;
-    case youPicked.innerHTML === "Paper" && housePicked.innerHTML === "Spock":
+    case youPicked.name === "Paper" && housePicked.name === "Spock":
       addScore(+1);
-      alert("vinto");
       break;
-    case youPicked.innerHTML === "Spock" && housePicked.innerHTML === "Paper":
+    case youPicked.name === "Spock" && housePicked.name === "Paper":
       addScore(-1);
-      alert("perso");
       break;
-    case youPicked.innerHTML === "Rock" && housePicked.innerHTML === "Scissors":
+    case youPicked.name === "Rock" && housePicked.name === "Scissors":
       addScore(+1);
-      alert("vinto");
       break;
-    case youPicked.innerHTML === "Scissors" && housePicked.innerHTML === "Rock":
+    case youPicked.name === "Scissors" && housePicked.name === "Rock":
       addScore(-1);
-      alert("perso");
       break;
-    case youPicked.innerHTML === "Lizard" && housePicked.innerHTML === "Paper":
+    case youPicked.name === "Lizard" && housePicked.name === "Paper":
       addScore(+1);
-      alert("vinto");
       break;
-    case youPicked.innerHTML === "Paper" && housePicked.innerHTML === "Lizard":
+    case youPicked.name === "Paper" && housePicked.name === "Lizard":
       addScore(-1);
-      alert("perso");
       break;
-    case youPicked.innerHTML === "Spock" && housePicked.innerHTML === "Rock":
+    case youPicked.name === "Spock" && housePicked.name === "Rock":
       addScore(+1);
-      alert("vinto");
       break;
-    case youPicked.innerHTML === "Rock" && housePicked.innerHTML === "Spock":
+    case youPicked.name === "Rock" && housePicked.name === "Spock":
       addScore(-1);
-      alert("perso");
       break;
     default:
       alert("Qualcosa è andato storto...");
@@ -123,10 +96,11 @@ let winLose = () => {
 
 let housePicked = (arr) => {
   let housePicked = document.createElement("button");
-  let localPicked = arr[Math.floor(Math.random() * arr.length)].name;
+  let localPicked = arr[Math.floor(Math.random() * arr.length)];
   housePicked.disabled = true;
-  housePicked.textContent = localPicked;
+  housePicked.name = localPicked.name;
   housePicked.classList.add("house-picked");
+  housePicked.style.backgroundImage = `url(${localPicked.imgUrl})`;
   let youPicked = document.querySelector("button.you-picked");
   youPicked.insertAdjacentElement("afterend", housePicked);
   let playAgainBtn = document.createElement("button");
@@ -136,6 +110,7 @@ let housePicked = (arr) => {
   playAgainBtn.onclick = (e) => {
     let yourPick = document.querySelector("button.you-picked");
     let housePick = document.querySelector("button.house-picked");
+    pentagon.style.backgroundImage = "url('./assets/images/bg-pentagon.svg')";
     if (yourPick.disabled === true) {
       yourPick.remove();
       housePick.remove();
@@ -146,16 +121,23 @@ let housePicked = (arr) => {
 };
 
 let youPicked = (e) => {
-  let youPickedThis = e.currentTarget.innerText;
+  let youPickedThis = e.currentTarget;
+  let result = document.createElement("div");
   let btns = document.querySelectorAll("button.you-picked");
+  pentagon.style.backgroundImage = "none";
   for (let btn of btns) {
-    if (btn.innerText === `${youPickedThis}`) {
+    if (btn.name === `${youPickedThis.name}`) {
       btn.disabled = true;
+      result.prepend(btn);
     } else {
       btn.remove();
     }
   }
+  pentagon.append(result);
+  result.className = "result";
   housePicked(arrayTwo);
+  let housePickedBtn = document.querySelector("button.house-picked");
+  result.append(housePickedBtn);
   winLose();
   addScore(+0);
 };
@@ -164,7 +146,7 @@ let buildBtns = (arr) => {
   for (let item of arr) {
     let btn = document.createElement("button");
     btn.className = "you-picked";
-    btn.innerText = item.name;
+    btn.name = item.name;
     btn.style.backgroundImage = `url(${item.imgUrl})`;
     pentagon.insertAdjacentElement("afterbegin", btn);
     btn.addEventListener("click", youPicked);
