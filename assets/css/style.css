@@ -140,12 +140,32 @@ main .pentagon .result .you-picked[name="Scissors"],
 main .pentagon .result .you-picked[name="Paper"],
 main .pentagon .result .you-picked[name="Rock"],
 main .pentagon .result .you-picked[name="Lizard"],
-main .pentagon .result .you-picked[name="Spock"] {
+main .pentagon .result .you-picked[name="Spock"],
+main .pentagon .result .house-picked[name="Scissors"],
+main .pentagon .result .house-picked[name="Paper"],
+main .pentagon .result .house-picked[name="Rock"],
+main .pentagon .result .house-picked[name="Lizard"],
+main .pentagon .result .house-picked[name="Spock"] {
   position: static;
 }
 
 main .pentagon .result {
   display: flex;
+  justify-content: space-between;
+}
+
+main .pentagon .result .section-pick,
+main .pentagon .result .section-win-lose {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main .pentagon .result .section-pick p {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 main button.modal-rules {

@@ -12,81 +12,85 @@ if (window.localStorage.getItem("score") === null) {
   window.localStorage.setItem("score", 0);
 }
 
-let addScore = (plusThis) => {
+let addScore = (plusThis, text) => {
   let score = JSON.parse(window.localStorage.getItem("score"));
   window.localStorage.setItem("score", score + plusThis);
   let scoreSpan = document.querySelector(".score span");
   scoreSpan.innerHTML = score;
+  let sectionWinLose = document.querySelector(".result .section-win-lose");
+  if (text !== null) {
+    sectionWinLose.prepend(text);
+  }
 };
 
-addScore(+0);
+addScore(+0, null);
 
 let winLose = () => {
   let youPicked = document.querySelector("button.you-picked");
   let housePicked = document.querySelector("button.house-picked");
   switch (true) {
     case youPicked.name === housePicked.name:
-      addScore(+0);
+      addScore(+0, "tie");
       break;
     case youPicked.name === "Scissors" && housePicked.name === "Paper":
-      addScore(+1);
+      addScore(+1, "you win");
       break;
     case youPicked.name === "Paper" && housePicked.name === "Scissors":
-      addScore(-1);
+      addScore(-1, "you lose");
       break;
     case youPicked.name === "Paper" && housePicked.name === "Rock":
-      addScore(+1);
+      addScore(+1, "you win");
       break;
     case youPicked.name === "Rock" && housePicked.name === "Paper":
-      addScore(-1);
+      addScore(-1, "you lose");
       break;
     case youPicked.name === "Rock" && housePicked.name === "Lizard":
-      addScore(+1);
+      addScore(+1, "you win");
       break;
     case youPicked.name === "Lizard" && housePicked.name === "Rock":
-      addScore(-1);
+      addScore(-1, "you lose");
       break;
     case youPicked.name === "Lizard" && housePicked.name === "Spock":
-      addScore(+1);
+      addScore(+1, "you win");
       break;
     case youPicked.name === "Spock" && housePicked.name === "Lizard":
-      addScore(-1);
+      addScore(-1, "you lose");
       break;
     case youPicked.name === "Spock" && housePicked.name === "Scissors":
-      addScore(+1);
+      addScore(+1, "you win");
       break;
     case youPicked.name === "Scissors" && housePicked.name === "Spock":
-      addScore(-1);
+      addScore(-1, "you lose");
       break;
     case youPicked.name === "Scissors" && housePicked.name === "Lizard":
-      addScore(+1);
+      addScore(+1, "you win");
       break;
     case youPicked.name === "Lizard" && housePicked.name === "Scissors":
-      addScore(-1);
+      addScore(-1, "you lose");
       break;
     case youPicked.name === "Paper" && housePicked.name === "Spock":
-      addScore(+1);
+      addScore(+1, "you win");
       break;
     case youPicked.name === "Spock" && housePicked.name === "Paper":
-      addScore(-1);
+      addScore(-1, "you lose");
       break;
     case youPicked.name === "Rock" && housePicked.name === "Scissors":
-      addScore(+1);
+      addScore(+1, "you win");
       break;
     case youPicked.name === "Scissors" && housePicked.name === "Rock":
-      addScore(-1);
+      addScore(-1, "you lose");
       break;
     case youPicked.name === "Lizard" && housePicked.name === "Paper":
-      addScore(+1);
+      addScore(+1, "you win");
       break;
     case youPicked.name === "Paper" && housePicked.name === "Lizard":
-      addScore(-1);
+      addScore(-1, "you lose");
       break;
     case youPicked.name === "Spock" && housePicked.name === "Rock":
-      addScore(+1);
+      addScore(+1, "you win");
       break;
     case youPicked.name === "Rock" && housePicked.name === "Spock":
-      addScore(-1);
+      addScore(-1, "you lose");
       break;
     default:
       alert("Qualcosa è andato storto...");
@@ -95,27 +99,45 @@ let winLose = () => {
 };
 
 let housePicked = (arr) => {
+  let resultDiv = document.querySelector(".pentagon .result");
   let housePicked = document.createElement("button");
   let localPicked = arr[Math.floor(Math.random() * arr.length)];
-  housePicked.disabled = true;
+  housePicked.style.pointerEvents = "none";
   housePicked.name = localPicked.name;
   housePicked.classList.add("house-picked");
   housePicked.style.backgroundImage = `url(${localPicked.imgUrl})`;
   let youPicked = document.querySelector("button.you-picked");
-  youPicked.insertAdjacentElement("afterend", housePicked);
   let playAgainBtn = document.createElement("button");
   playAgainBtn.className = "play-again";
   playAgainBtn.textContent = "Play Again";
-  housePicked.after(playAgainBtn);
+
+  let sectionYouPicked = document.createElement("div");
+  let titleYouPicked = document.createElement("p");
+  titleYouPicked.textContent = "you picked";
+  sectionYouPicked.className = "section-pick";
+  sectionYouPicked.append(titleYouPicked, youPicked);
+  let sectionWinLose = document.createElement("div");
+  let titleWinLose = document.createElement("p");
+  sectionWinLose.className = "section-win-lose";
+  sectionWinLose.append(titleWinLose, playAgainBtn);
+  let sectionHousePicked = document.createElement("div");
+  let titleHousePicked = document.createElement("p");
+  titleHousePicked.textContent = "the house picked";
+  sectionHousePicked.className = "section-pick";
+  sectionHousePicked.append(titleHousePicked, housePicked);
+  resultDiv.append(sectionYouPicked, sectionWinLose, sectionHousePicked);
+
   playAgainBtn.onclick = (e) => {
     let yourPick = document.querySelector("button.you-picked");
     let housePick = document.querySelector("button.house-picked");
+    pentagon.style.marginTop = "150px";
     pentagon.style.backgroundImage = "url('./assets/images/bg-pentagon.svg')";
-    if (yourPick.disabled === true) {
+    if (yourPick.style.pointerEvents === "none") {
       yourPick.remove();
       housePick.remove();
       buildBtns(arrayOne);
       playAgainBtn.remove();
+      resultDiv.remove();
     }
   };
 };
@@ -127,19 +149,20 @@ let youPicked = (e) => {
   pentagon.style.backgroundImage = "none";
   for (let btn of btns) {
     if (btn.name === `${youPickedThis.name}`) {
-      btn.disabled = true;
+      btn.style.pointerEvents = "none";
       result.prepend(btn);
     } else {
       btn.remove();
     }
   }
+  pentagon.style.marginTop = "70px";
   pentagon.append(result);
   result.className = "result";
   housePicked(arrayTwo);
-  let housePickedBtn = document.querySelector("button.house-picked");
-  result.append(housePickedBtn);
+  //let housePickedBtn = document.querySelector("button.house-picked");
+  //result.append(housePickedBtn);
   winLose();
-  addScore(+0);
+  addScore(+0, null);
 };
 
 let buildBtns = (arr) => {
