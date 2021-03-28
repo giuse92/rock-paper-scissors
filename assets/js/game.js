@@ -12,14 +12,37 @@ if (window.localStorage.getItem("score") === null) {
   window.localStorage.setItem("score", 0);
 }
 
+let highlightWinner = (youWinYouLose) => {
+  let resultYouPicked = document.querySelector(
+    ".pentagon .result .section-pick .you-picked"
+  );
+  let resultYouPickedStyle = getComputedStyle(resultYouPicked);
+  let resultHousePicked = document.querySelector(
+    ".pentagon .result .section-pick .house-picked"
+  );
+  let resultHousePickedStyle = getComputedStyle(resultHousePicked);
+  if (youWinYouLose === "you win") {
+    resultYouPicked.setAttribute(
+      "style",
+      `background-image: ${resultYouPickedStyle.backgroundImage}; pointer-events:none; box-shadow: ${resultYouPickedStyle.boxShadow}, 0px 0px 0 32px rgb(255 255 255 / 15%), 0 0 0 64px rgb(255 255 255 / 10%), 0 0 0 96px rgb(255 255 255 / 5%);`
+    );
+  } else if (youWinYouLose === "you lose") {
+    resultHousePicked.setAttribute(
+      "style",
+      `background-image: ${resultHousePickedStyle.backgroundImage}; pointer-events:none; box-shadow: ${resultHousePickedStyle.boxShadow}, 0px 0px 0 32px rgb(255 255 255 / 15%), 0 0 0 64px rgb(255 255 255 / 10%), 0 0 0 96px rgb(255 255 255 / 5%);`
+    );
+  }
+};
+
 let addScore = (plusThis, text) => {
   let score = JSON.parse(window.localStorage.getItem("score"));
   window.localStorage.setItem("score", score + plusThis);
   let scoreSpan = document.querySelector(".score span");
   scoreSpan.innerHTML = score;
-  let sectionWinLose = document.querySelector(".result .section-win-lose");
+  let sectionWinLose = document.querySelector(".result .section-win-lose p");
   if (text !== null) {
     sectionWinLose.prepend(text);
+    highlightWinner(text);
   }
 };
 
@@ -93,7 +116,7 @@ let winLose = () => {
       addScore(-1, "you lose");
       break;
     default:
-      alert("Qualcosa è andato storto...");
+      alert("Something went wrong...");
       break;
   }
 };
@@ -129,8 +152,10 @@ let housePicked = (arr) => {
 
   playAgainBtn.onclick = (e) => {
     let yourPick = document.querySelector("button.you-picked");
+    yourPick.classList.add("you-picked");
     let housePick = document.querySelector("button.house-picked");
-    pentagon.style.marginTop = "150px";
+    housePicked.classList.add("house-picked");
+    pentagon.style.margin = "150px 0";
     pentagon.style.backgroundImage = "url('./assets/images/bg-pentagon.svg')";
     if (yourPick.style.pointerEvents === "none") {
       yourPick.remove();
@@ -155,7 +180,7 @@ let youPicked = (e) => {
       btn.remove();
     }
   }
-  pentagon.style.marginTop = "70px";
+  pentagon.style.margin = "20px 0";
   pentagon.append(result);
   result.className = "result";
   housePicked(arrayTwo);

@@ -109,31 +109,36 @@ main .pentagon .you-picked:hover {
 main .pentagon .you-picked[name="Scissors"] {
   top: -28%;
   left: 39%;
-  border-color: hsl(39, 89%, 49%);
+  border-color: hsl(40, 84%, 53%);
+  box-shadow: inset 0px 7px 0 0 #ccc, 0px 7px 0 0 hsl(39, 85%, 42%);
 }
 
 main .pentagon .you-picked[name="Paper"] {
   right: 11%;
   top: 11%;
-  border-color: hsl(230, 89%, 62%);
+  border-color: hsl(230, 89%, 65%);
+  box-shadow: inset 0px 7px 0 0 #ccc, 0px 7px 0 0 hsl(230, 56%, 50%);
 }
 
 main .pentagon .you-picked[name="Rock"] {
   right: 21%;
   top: 72%;
-  border-color: hsl(349, 71%, 52%);
+  border-color: hsl(349, 70%, 56%);
+  box-shadow: inset 0px 7px 0 0 #ccc, 0px 7px 0 0 hsl(349, 65%, 44%);
 }
 
 main .pentagon .you-picked[name="Lizard"] {
   left: 21%;
   top: 72%;
-  border-color: hsl(261, 73%, 60%);
+  border-color: hsl(261, 72%, 63%);
+  box-shadow: inset 0px 7px 0 0 #ccc, 0px 7px 0 0 hsl(261, 49%, 50%);
 }
 
 main .pentagon .you-picked[name="Spock"] {
   left: 11%;
   top: 11%;
-  border-color: hsl(189, 59%, 53%);
+  border-color: hsl(189, 58%, 57%);
+  box-shadow: inset 0px 7px 0 0 #ccc, 0px 7px 0 0 hsl(189, 52%, 44%);
 }
 
 main .pentagon .result .you-picked[name="Scissors"],
@@ -147,6 +152,31 @@ main .pentagon .result .house-picked[name="Rock"],
 main .pentagon .result .house-picked[name="Lizard"],
 main .pentagon .result .house-picked[name="Spock"] {
   position: static;
+}
+
+main .pentagon .house-picked[name="Scissors"] {
+  border-color: hsl(40, 84%, 53%);
+  box-shadow: inset 0px 7px 0 0 #ccc, 0px 7px 0 0 hsl(39, 85%, 42%);
+}
+
+main .pentagon .house-picked[name="Paper"] {
+  border-color: hsl(230, 89%, 65%);
+  box-shadow: inset 0px 7px 0 0 #ccc, 0px 7px 0 0 hsl(230, 56%, 50%);
+}
+
+main .pentagon .house-picked[name="Rock"] {
+  border-color: hsl(349, 70%, 56%);
+  box-shadow: inset 0px 7px 0 0 #ccc, 0px 7px 0 0 hsl(349, 65%, 44%);
+}
+
+main .pentagon .house-picked[name="Lizard"] {
+  border-color: hsl(261, 72%, 63%);
+  box-shadow: inset 0px 7px 0 0 #ccc, 0px 7px 0 0 hsl(261, 49%, 50%);
+}
+
+main .pentagon .house-picked[name="Spock"] {
+  border-color: hsl(189, 58%, 57%);
+  box-shadow: inset 0px 7px 0 0 #ccc, 0px 7px 0 0 hsl(189, 52%, 44%);
 }
 
 main .pentagon .result {
@@ -166,6 +196,29 @@ main .pentagon .result .section-pick p {
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+
+main .pentagon .result .section-win-lose p {
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 2em;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+main .pentagon .result .section-win-lose button {
+  width: 150px;
+  padding: 10px 0;
+  text-transform: uppercase;
+  color: hsl(229, 64%, 46%);
+  letter-spacing: 1px;
+  border-radius: 7px;
+  border: 0;
+}
+
+main .pentagon .result .section-win-lose button:hover {
+  cursor: pointer;
 }
 
 main button.modal-rules {
