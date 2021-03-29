@@ -1,0 +1,123 @@
+@media only screen and (max-width: 425px) {
+  main {
+    width: 85%;
+    padding: 35px 0;
+  }
+
+  main .intro {
+    align-items: center;
+    padding: 10px 12px;
+    padding-left: 22px;
+  }
+
+  main .intro .game-name li {
+    font-size: 15px;
+  }
+
+  main .intro .score {
+    width: 30%;
+    font-size: 11px;
+    padding-top: 10px;
+  }
+
+  main .intro .score span {
+    font-size: 45px;
+    margin-top: -3px;
+  }
+
+  main button.modal-rules {
+    position: relative;
+    bottom: 0;
+    width: 35%;
+    margin: 0 auto;
+    padding: 2% 5%;
+  }
+
+  main .pentagon {
+    width: 80%;
+    margin: 110px auto;
+    margin-top: 50px;
+  }
+
+  main .pentagon .you-picked,
+  main .pentagon .house-picked,
+  main .result .you-picked,
+  main .result .house-picked {
+    width: 87px;
+    height: 87px;
+    border: 10px solid;
+  }
+
+  main .pentagon .you-picked[name="Scissors"] {
+    top: 3%;
+    left: 35%;
+    border-color: hsl(40, 84%, 53%);
+    box-shadow: inset 0px 4px 0 0 #ccc, 0px 4px 0 0 hsl(39, 85%, 42%);
+  }
+
+  main .pentagon .you-picked[name="Paper"] {
+    right: -17%;
+    top: 27%;
+    border-color: hsl(230, 89%, 65%);
+    box-shadow: inset 0px 4px 0 0 #ccc, 0px 4px 0 0 hsl(230, 56%, 50%);
+  }
+
+  main .pentagon .you-picked[name="Rock"] {
+    right: 5%;
+    top: 72%;
+    border-color: hsl(349, 70%, 56%);
+    box-shadow: inset 0px 4px 0 0 #ccc, 0px 4px 0 0 hsl(349, 65%, 44%);
+  }
+
+  main .pentagon .you-picked[name="Lizard"] {
+    left: 5%;
+    top: 72%;
+    border-color: hsl(261, 72%, 63%);
+    box-shadow: inset 0px 4px 0 0 #ccc, 0px 4px 0 0 hsl(261, 49%, 50%);
+  }
+
+  main .pentagon .you-picked[name="Spock"] {
+    left: -17%;
+    top: 27%;
+    border-color: hsl(189, 58%, 57%);
+    box-shadow: inset 0px 4px 0 0 #ccc, 0px 4px 0 0 hsl(189, 52%, 44%);
+  }
+
+  main .pentagon .result .section-pick {
+    flex-direction: column-reverse;
+  }
+
+  main .pentagon .result .section-win-lose {
+    position: relative;
+    top: 158px;
+  }
+
+  section.show-rules {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  section.show-rules img {
+    width: 100%;
+    padding: 12%;
+    padding-top: 30%;
+  }
+
+  section.show-rules .modal-header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  section.show-rules .modal-header button {
+    position: absolute;
+    bottom: 10%;
+  }
+}

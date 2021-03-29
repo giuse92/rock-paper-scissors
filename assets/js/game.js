@@ -155,7 +155,13 @@ let housePicked = (arr) => {
     yourPick.classList.add("you-picked");
     let housePick = document.querySelector("button.house-picked");
     housePicked.classList.add("house-picked");
-    pentagon.style.margin = "150px 0";
+    if (window.outerWidth > 425) {
+      pentagon.style.margin = "150px 0";
+    } else {
+      pentagon.style.margin = "110px auto";
+      pentagon.style.marginTop = "50px";
+    }
+
     pentagon.style.backgroundImage = "url('./assets/images/bg-pentagon.svg')";
     if (yourPick.style.pointerEvents === "none") {
       yourPick.remove();
